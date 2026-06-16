@@ -2,6 +2,21 @@
   <img src="assets/brand/comptext-air-readme-header.png" alt="CompText AIR - Agent Intermediate Representation" width="100%">
 </p>
 
+<div align="center">
+
+![AIR: schema validated](https://img.shields.io/badge/AIR-schema%20validated-blue)
+![Evidence: hash chained](https://img.shields.io/badge/evidence-hash%20chained-brightgreen)
+![Replay: contracts](https://img.shields.io/badge/replay-contracts-purple)
+![Adapters: descriptive only](https://img.shields.io/badge/adapters-descriptive%20only-lightgrey)
+![Audit reports: deterministic](https://img.shields.io/badge/audit%20reports-deterministic-brightgreen)
+![Agent skills: local](https://img.shields.io/badge/agent%20skills-local-blue)
+![Network: offline only](https://img.shields.io/badge/network-offline%20only-red)
+![Provider runtime: not implemented](https://img.shields.io/badge/provider%20runtime-not%20implemented-lightgrey)
+![MCP: not claimed](https://img.shields.io/badge/MCP-not%20claimed-lightgrey)
+![CoT capture: disabled](https://img.shields.io/badge/CoT%20capture-disabled-lightgrey)
+
+</div>
+
 # CompText AIR
 
 Agent Intermediate Representation for CompText.
@@ -23,19 +38,26 @@ Natural Language
 
 ## Current status
 
-Phase 4 is validated.
+Phase 9 is validated.
 
 Implemented:
 
 - AIR intent/plan schema
 - Evidence event schema
+- Adapter schema
 - AIR fixtures
 - Evidence hash-chain fixture
+- Runtime adapter fixtures
+- Negative adapter fixtures
 - JSON validation
 - AIR fixture validation
 - Evidence fixture validation
+- Replay contract validation
+- Adapter fixture validation
 - Real canonical SHA-256 event hashing
 - Parent-event hash-chain validation
+- Deterministic generated audit reports
+- Repository-local agent skill pack
 
 Current canonicalization profile:
 
@@ -98,11 +120,11 @@ This repository does not claim:
 - remote Supabase deployment
 - package publishing
 
-## Next phase
+## Current validated baseline
 
-Phase 5: AIR-to-Evidence replay contracts.
+Phase 9 validates the AIR contract layer, Evidence layer, replay contracts, adapter boundaries, deterministic audit reports, and repository-local agent skill pack.
 
-The next validation layer should prove that an evidence event chain fulfills the AIR plan, not only that the hashes are valid.
+The repository remains offline-only and does not claim provider runtime, production MCP support, hidden chain-of-thought capture, package publishing, or legal/compliance/forensic assurance.
 
 <p align="center">
   <img src="assets/brand/comptext-air-readme-footer.png" alt="CompText AIR - Deterministic, portable, verifiable" width="100%">
