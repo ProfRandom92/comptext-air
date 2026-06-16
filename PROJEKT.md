@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 9
-CURRENT_TASK: Agent skill pack
-STATUS: phase-9-agent-skill-pack
+CURRENT_PHASE: 10
+CURRENT_TASK: Release Readiness and Public Repo Polish
+STATUS: phase-10-complete
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
@@ -27,10 +27,11 @@ The repository owns the AIR contract layer:
 - agent handoff prompts
 - CI validation workflow
 - Machine-readable audit reports
+- Release readiness documentation
 
 ## Current validated state
 
-Phase 8 validates:
+Phase 10 validates:
 
 - JSON syntax across repository fixtures and schemas
 - AIR plan fixtures
@@ -42,6 +43,8 @@ Phase 8 validates:
 - AIR-to-Evidence replay contract fulfillment
 - Negative adapter validation (blocking forbidden claims and missing safety fields)
 - Deterministic JSON audit report generation
+- Repository-local agent skill pack
+- Release readiness baseline
 
 ## Current boundary
 
@@ -56,6 +59,4 @@ This repository does not own:
 
 ## Next phase
 
-Phase 8: Generated Audit Reports.
-
-Goal: generate deterministic machine-readable validation reports for replay contracts and adapter validation.
+Phase 11: Conceptual AIR Context Snapshotting.

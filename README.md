@@ -144,3 +144,14 @@ See:
 - `agent_prompts/CODEX_AIR_VALIDATION_PROMPT.md`
 - `docs/AGENT_SKILLS.md`
 
+## Release Readiness
+
+CompText AIR is prepared for public review as a validated contract and representation layer.
+
+See:
+- [Validation Baseline](docs/VALIDATION_BASELINE.md)
+- [Release Readiness](docs/RELEASE_READINESS.md)
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+
