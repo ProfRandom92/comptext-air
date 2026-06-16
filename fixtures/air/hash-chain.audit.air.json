@@ -1,38 +1,40 @@
-[
-  {
-    "version": "v0.1",
-    "timestamp": "2026-06-16T10:00:00Z",
-    "agent_id": "chain-agent-001",
-    "task_id": "chained-task-001",
-    "input_prompt_hash": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
-    "output_proposal_hash": "d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
-    "payload": {
-      "action": "step_one",
-      "description": "Initial setup completed."
-    }
+{
+  "version": "air-v0.1",
+  "intent": {
+    "type": "audit",
+    "risk_category": "integrity"
   },
-  {
-    "version": "v0.1",
-    "timestamp": "2026-06-16T10:05:00Z",
-    "agent_id": "chain-agent-001",
-    "task_id": "chained-task-001",
-    "input_prompt_hash": "d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
-    "output_proposal_hash": "e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
-    "payload": {
-      "action": "step_two",
-      "description": "Processed data from step one."
+  "goal": "Validate an evidence event chain without trusting chain-of-thought.",
+  "inputs": [
+    {
+      "kind": "artifact",
+      "value": "fixtures/evidence/hash-chain.events.json"
     }
-  },
-  {
-    "version": "v0.1",
-    "timestamp": "2026-06-16T10:10:00Z",
-    "agent_id": "chain-agent-001",
-    "task_id": "chained-task-001",
-    "input_prompt_hash": "e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
-    "output_proposal_hash": "f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3",
-    "payload": {
-      "action": "step_three",
-      "description": "Final verification and output generation."
+  ],
+  "pipeline": [
+    "load_evidence_events",
+    "verify_parent_links",
+    "verify_hash_chain",
+    "emit_validation_report"
+  ],
+  "contracts": [
+    "no_missing_parent_event",
+    "hash_chain_contiguous",
+    "event_hash_present",
+    "final_report_references_evidence"
+  ],
+  "outputs": [
+    {
+      "kind": "json",
+      "path": "reports/hash-chain.validation.json"
+    },
+    {
+      "kind": "markdown",
+      "path": "reports/hash-chain.validation.md"
     }
+  ],
+  "metadata": {
+    "fixture": true,
+    "purpose": "AIR plan for validating evidence hash chains"
   }
-]
+}

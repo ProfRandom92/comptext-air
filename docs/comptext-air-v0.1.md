@@ -67,3 +67,50 @@ This example demonstrates how `input_prompt_hash` can link to a previous `output
   }
 }
 ```
+
+## Validation Rules
+
+To be considered a valid CompText AIR artifact, the following rules must be met:
+
+1.  **JSON Syntax:** Must be a valid JSON object.
+2.  **Required Fields:** Must contain all required fields: `version`, `timestamp`, `agent_id`, `task_id`, `input_prompt_hash`, `output_proposal_hash`, and `payload`.
+3.  **No Extra Fields:** Must not contain any fields outside of the defined schema (strict mode).
+4.  **Version:** Must use a supported version string (e.g., `"v0.1"`).
+5.  **Hash Format:** `input_prompt_hash` and `output_proposal_hash` must be lower-case hexadecimal strings exactly 64 characters long (SHA-256).
+6.  **Timestamp:** Must follow ISO 8601 `date-time` format.
+7.  **Payload:** Must be a JSON object.
+
+### Invalid AIR Artifact Examples
+
+#### Missing Required Field
+
+```json
+{
+  "version": "v0.1",
+  "timestamp": "2026-01-01T12:00:00Z",
+  "agent_id": "agent-alpha-123",
+  "task_id": "task-456",
+  "input_prompt_hash": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+  "payload": {
+    "action": "log",
+    "message": "Missing output_proposal_hash"
+  }
+}
+```
+
+#### Invalid Hash Format
+
+```json
+{
+  "version": "v0.1",
+  "timestamp": "2026-01-01T12:00:00Z",
+  "agent_id": "agent-alpha-123",
+  "task_id": "task-456",
+  "input_prompt_hash": "invalid-hash",
+  "output_proposal_hash": "f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1",
+  "payload": {
+    "action": "log",
+    "message": "Invalid input_prompt_hash format"
+  }
+}
+```
