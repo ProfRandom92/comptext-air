@@ -30,3 +30,5 @@ jobs:
           ls -l reports/generated/
           cat reports/generated/replay-contract-report.json
           cat reports/generated/adapter-validation-report.json
+      - name: Pre-tag release rehearsal
+        run: python scripts/release/pretag_rehearsal.py
