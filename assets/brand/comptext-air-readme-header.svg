@@ -1,4 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="522" viewBox="0 0 1600 522" role="img" aria-label="CompText AIR README header">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-label="CompText AIR README header">
   <title>CompText AIR README header</title>
-  <image href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/wAALCAAACgAMAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACP/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8Af//Z" width="1600" height="522" preserveAspectRatio="xMidYMid meet"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020713"/>
+      <stop offset="0.55" stop-color="#061426"/>
+      <stop offset="1" stop-color="#07051a"/>
+    </linearGradient>
+    <linearGradient id="tealBlueViolet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00F0C2"/>
+      <stop offset="0.48" stop-color="#00B8FF"/>
+      <stop offset="1" stop-color="#7A5CFF"/>
+    </linearGradient>
+    <linearGradient id="airText" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00F0C2"/>
+      <stop offset="0.55" stop-color="#00B8FF"/>
+      <stop offset="1" stop-color="#7A5CFF"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0 0 0 0.85  0 0 0 0 1  0 0 0 0.75 0" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#163653" stroke-width="1" opacity="0.26"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="520" fill="url(#bg)"/>
+  <rect width="1600" height="520" fill="url(#grid)" opacity="0.22"/>
+  <circle cx="1260" cy="170" r="260" fill="#00B8FF" opacity="0.08" filter="url(#softGlow)"/>
+  <circle cx="1330" cy="270" r="230" fill="#7A5CFF" opacity="0.08" filter="url(#softGlow)"/>
+  <path d="M46 72H795" stroke="url(#tealBlueViolet)" stroke-width="2" opacity="0.72"/>
+  <text x="46" y="46" fill="#00F0C2" font-family="Orbitron, Exo 2, Inter, Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="8">COMPTEXT AIR</text>
+  <text x="255" y="46" fill="#8792A8" font-family="Inter, Arial, sans-serif" font-size="16" letter-spacing="7">BRAND IDENTITY</text>
+
+  <g transform="translate(92 168)" filter="url(#glow)">
+    <path d="M90 0 150 34v40l-28 16v-40L90 32 38 62v66l52 30 36-21 30 18-66 38L0 141V49z" fill="#F7FAFF"/>
+    <polygon points="90,69 116,84 116,114 90,130 64,114 64,84" fill="url(#tealBlueViolet)"/>
+    <path d="M12 210 90 253 168 210v33L90 287 12 243z" fill="#00F0C2"/>
+    <path d="M12 262 90 305 168 262v33L90 339 12 295z" fill="#00B8FF"/>
+    <path d="M12 314 90 357 168 314v33L90 391 12 347z" fill="#7A5CFF"/>
+  </g>
+
+  <text x="295" y="232" fill="#F8FBFF" font-family="Orbitron, Exo 2, Inter, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="18">COMPTEXT</text>
+  <text x="915" y="232" fill="url(#airText)" font-family="Orbitron, Exo 2, Inter, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="18">AIR</text>
+  <text x="300" y="292" fill="#00F0C2" font-family="Exo 2, Inter, Arial, sans-serif" font-size="25" font-weight="500" letter-spacing="13">AGENT INTERMEDIATE REPRESENTATION</text>
+  <rect x="300" y="342" width="3" height="56" fill="#00F0C2"/>
+  <text x="326" y="366" font-family="Exo 2, Inter, Arial, sans-serif" font-size="25" font-weight="500"><tspan fill="#00F0C2">Deterministic.</tspan><tspan fill="#00B8FF"> Portable.</tspan><tspan fill="#7A5CFF"> Verifiable.</tspan></text>
+  <text x="326" y="402" fill="#B7C1D1" font-family="Inter, Arial, sans-serif" font-size="21">Models are providers. Context is the product.</text>
+
+  <g transform="translate(1140 74)" filter="url(#glow)">
+    <path d="M195 0 390 112v226L195 450 0 338V112z" fill="none" stroke="url(#tealBlueViolet)" stroke-width="8" opacity="0.88"/>
+    <path d="M195 78 322 151v147L195 372 68 298V151z" fill="none" stroke="#B8F8FF" stroke-width="3" opacity="0.48"/>
+    <polygon points="195,150 265,190 265,270 195,310 125,270 125,190" fill="url(#tealBlueViolet)" opacity="0.9"/>
+    <path d="M54 398 195 478 336 398" fill="none" stroke="#00B8FF" stroke-width="18" stroke-linecap="round" opacity="0.8"/>
+    <path d="M54 454 195 534 336 454" fill="none" stroke="#7A5CFF" stroke-width="18" stroke-linecap="round" opacity="0.72"/>
+  </g>
+
+  <g opacity="0.65">
+    <circle cx="1040" cy="88" r="3" fill="#00F0C2"/><circle cx="978" cy="158" r="2" fill="#00B8FF"/><circle cx="1515" cy="85" r="2" fill="#7A5CFF"/><circle cx="1466" cy="370" r="3" fill="#00B8FF"/>
+    <path d="M975 160 1040 88 1120 142" fill="none" stroke="#17476A" stroke-width="1.5"/>
+    <path d="M1335 76 1515 85 1466 370" fill="none" stroke="#18345A" stroke-width="1.5" opacity="0.62"/>
+  </g>
 </svg>
