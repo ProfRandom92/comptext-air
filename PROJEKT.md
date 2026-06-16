@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
 CURRENT_PHASE: 9
-CURRENT_TASK: Generated Audit Reports
-STATUS: phase-8-generated-reports
+CURRENT_TASK: Agent skill pack
+STATUS: phase-9-agent-skill-pack
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
