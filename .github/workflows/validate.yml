@@ -23,3 +23,5 @@ jobs:
         run: python scripts/validate_evidence_fixtures.py
       - name: Validate Replay Contracts
         run: python scripts/validate_replay_contracts.py
+      - name: Validate Adapter Fixtures
+        run: python scripts/validate_adapter_fixtures.py
