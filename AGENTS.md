@@ -74,6 +74,9 @@ Run:
 python scripts/validate_json.py
 python scripts/validate_air_fixtures.py
 python scripts/validate_evidence_fixtures.py
+python scripts/validate_replay_contracts.py
+python scripts/validate_adapter_fixtures.py
+python scripts/release/pretag_rehearsal.py
 
 Additional phase-specific validators may be required by tasks/PHASE_*.md.
 

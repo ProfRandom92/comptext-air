@@ -36,9 +36,15 @@ Natural Language
   <-> Natural Language Summary
 ```
 
+See:
+- [AIR vs Evidence](docs/AIR_VS_EVIDENCE.md)
+- [Replay Contracts](docs/REPLAY_CONTRACTS.md)
+- [Runtime Adapters](docs/RUNTIME_ADAPTERS.md)
+- [Audit Reports](docs/AUDIT_REPORTS.md)
+
 ## Current status
 
-Phase 9 is validated.
+Phase 12 is validated.
 
 Implemented:
 
@@ -107,6 +113,8 @@ Run locally:
 python scripts/validate_json.py
 python scripts/validate_air_fixtures.py
 python scripts/validate_evidence_fixtures.py
+python scripts/validate_replay_contracts.py
+python scripts/validate_adapter_fixtures.py
 ```
 
 ## Boundaries
@@ -122,7 +130,7 @@ This repository does not claim:
 
 ## Current validated baseline
 
-Phase 9 validates the AIR contract layer, Evidence layer, replay contracts, adapter boundaries, deterministic audit reports, and repository-local agent skill pack.
+Phase 12 validates the AIR contract layer, Evidence layer, replay contracts, adapter boundaries, deterministic audit reports, repository-local agent skill pack, and final pre-tag consistency audit.
 
 The repository remains offline-only and does not claim provider runtime, production MCP support, hidden chain-of-thought capture, package publishing, or legal/compliance/forensic assurance.
 
