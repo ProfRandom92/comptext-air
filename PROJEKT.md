@@ -1,7 +1,7 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 2
-CURRENT_TASK: AIR validation and contract pack stabilization
+CURRENT_PHASE: 3
+CURRENT_TASK: Evidence Separation and validation stabilization
 STATUS: validated
 NETWORK: offline-only
 DEFAULT_BRANCH: main

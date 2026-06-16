@@ -1,0 +1,45 @@
+[
+  {
+    "event_id": "evt-001",
+    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "timestamp": "2026-06-16T10:00:00Z",
+    "executor": {
+      "id": "gemini-cli",
+      "type": "agent"
+    },
+    "event_type": "start",
+    "command": "python scripts/validate_evidence_fixtures.py",
+    "event_hash": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+  },
+  {
+    "event_id": "evt-002",
+    "parent_event_hash": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "timestamp": "2026-06-16T10:00:05Z",
+    "executor": {
+      "id": "gemini-cli",
+      "type": "agent"
+    },
+    "event_type": "step",
+    "command": "load_evidence_events",
+    "outputs": [
+      {
+        "key": "evidence_list",
+        "hash": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2"
+      }
+    ],
+    "event_hash": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+  },
+  {
+    "event_id": "evt-003",
+    "parent_event_hash": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
+    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "timestamp": "2026-06-16T10:00:10Z",
+    "executor": {
+      "id": "gemini-cli",
+      "type": "agent"
+    },
+    "event_type": "end",
+    "event_hash": "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4"
+  }
+]
