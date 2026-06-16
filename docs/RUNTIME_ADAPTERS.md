@@ -35,3 +35,22 @@ The adapter schema is defined in `schemas/adapter.schema.json`.
 ## Example: Local CLI Adapter
 
 The `fixtures/adapter/ctxt-local.adapter.json` fixture describes how a local `comptext` CLI tool satisfies the AIR contract. It maps AIR's `audit` intent to the `comptext audit --json` command and defines the safety boundaries of the local environment.
+
+## Negative Adapter Fixtures
+
+To ensure the safety and integrity of the AIR layer, adapters that over-claim capabilities or miss required safety declarations are explicitly blocked during validation.
+
+Required safety fields:
+- `disabled_capabilities`: Must be present to explicitly list restricted actions.
+- `evidence_mapping`: Must be present to define how runtime events translate to evidence.
+
+Forbidden claims (blocked by validation):
+- `provider_runtime`: No direct model provider execution allowed.
+- `mcp_server`: No production MCP server claims.
+- `external_agent_execution`: No delegation to external untrusted agents.
+- `auto_apply`: No automatic application of suggested changes.
+- `network_required`: No mandatory network access for execution.
+- `production_runtime`: No claims of being a production-ready execution environment.
+- `legal_assurance`, `compliance_assurance`, `forensic_assurance`: No legal or compliance guarantees.
+
+Invalid fixtures are maintained in `fixtures/adapter/invalid/` to prove that these constraints are enforced.

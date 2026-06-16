@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 ADAPTER_FIXTURES_DIR = Path("fixtures/adapter")
+INVALID_FIXTURES_DIR = ADAPTER_FIXTURES_DIR / "invalid"
 
 VALID_KIND = {"local-cli", "mcp-proxy", "internal-vfs", "unknown"}
 VALID_AIR_VERSION = "air-v0.1"
@@ -13,72 +14,102 @@ REQUIRED_TOP = [
     "supported_air_version",
     "command_surface",
     "input_mapping",
-    "output_mapping"
+    "output_mapping",
+    "evidence_mapping",
+    "disabled_capabilities"
 ]
 
-def fail(msg):
-    print(f"FAILURE: {msg}")
-    sys.exit(1)
+FORBIDDEN_CLAIMS = {
+    "provider_runtime",
+    "mcp_server",
+    "external_agent_execution",
+    "auto_apply",
+    "network_required",
+    "production_runtime",
+    "legal_assurance",
+    "compliance_assurance",
+    "forensic_assurance"
+}
 
 def validate_adapter(fixture, fixture_path):
     if not isinstance(fixture, dict):
-        fail(f"{fixture_path}: Adapter must be an object")
+        raise ValueError(f"{fixture_path}: Adapter must be an object")
 
     for key in REQUIRED_TOP:
         if key not in fixture:
-            fail(f"{fixture_path}: missing required field: {key}")
+            raise ValueError(f"{fixture_path}: missing required field: {key}")
 
     if fixture["adapter_kind"] not in VALID_KIND:
-        fail(f"{fixture_path}: invalid adapter_kind: {fixture['adapter_kind']}")
+        raise ValueError(f"{fixture_path}: invalid adapter_kind: {fixture['adapter_kind']}")
 
     if fixture["supported_air_version"] != VALID_AIR_VERSION:
-        fail(f"{fixture_path}: unsupported air version: {fixture['supported_air_version']}")
+        raise ValueError(f"{fixture_path}: unsupported air version: {fixture['supported_air_version']}")
+
+    # Check for forbidden claims
+    for claim in FORBIDDEN_CLAIMS:
+        if claim in fixture:
+            raise ValueError(f"{fixture_path}: forbidden claim found: {claim}")
 
     # Validate command_surface
     cs = fixture["command_surface"]
     if not isinstance(cs, dict) or "binary" not in cs or "commands" not in cs:
-        fail(f"{fixture_path}: invalid command_surface structure")
+        raise ValueError(f"{fixture_path}: invalid command_surface structure")
     
     if not isinstance(cs["commands"], list):
-        fail(f"{fixture_path}: command_surface.commands must be a list")
+        raise ValueError(f"{fixture_path}: command_surface.commands must be a list")
 
     # Validate input_mapping
     im = fixture["input_mapping"]
     if not isinstance(im, list):
-        fail(f"{fixture_path}: input_mapping must be a list")
+        raise ValueError(f"{fixture_path}: input_mapping must be a list")
     for mapping in im:
         if not all(k in mapping for k in ["air_input_kind", "runtime_flag"]):
-            fail(f"{fixture_path}: invalid input_mapping entry")
+            raise ValueError(f"{fixture_path}: invalid input_mapping entry")
 
     # Validate output_mapping
     om = fixture["output_mapping"]
     if not isinstance(om, list):
-        fail(f"{fixture_path}: output_mapping must be a list")
+        raise ValueError(f"{fixture_path}: output_mapping must be a list")
     for mapping in om:
         if not all(k in mapping for k in ["runtime_key", "air_output_kind"]):
-            fail(f"{fixture_path}: invalid output_mapping entry")
+            raise ValueError(f"{fixture_path}: invalid output_mapping entry")
 
 def validate_adapter_fixtures():
     print("Validating AIR Adapter fixtures...")
     
-    fixtures = list(ADAPTER_FIXTURES_DIR.glob("*.json"))
-    if not fixtures:
-        print("  No adapter fixtures found to validate.")
-        return
+    error_count = 0
 
-    for fixture_path in fixtures:
+    # 1. Validate positive fixtures
+    positive_fixtures = list(ADAPTER_FIXTURES_DIR.glob("*.json"))
+    for fixture_path in positive_fixtures:
         print(f"  Validating {fixture_path}...")
         try:
             with open(fixture_path, 'r') as f:
                 fixture = json.load(f)
             validate_adapter(fixture, fixture_path)
-                
-        except json.JSONDecodeError as e:
-            fail(f"JSON decode error in {fixture_path}: {e}")
         except Exception as e:
-            fail(f"Unexpected error validating {fixture_path}: {e}")
+            print(f"FAILURE: {fixture_path} should be valid but failed: {e}")
+            error_count += 1
 
-    print("SUCCESS: All adapter fixtures are valid.")
+    # 2. Validate negative fixtures
+    if INVALID_FIXTURES_DIR.exists():
+        negative_fixtures = list(INVALID_FIXTURES_DIR.glob("*.json"))
+        for fixture_path in negative_fixtures:
+            print(f"  Validating {fixture_path} (expecting failure)...")
+            try:
+                with open(fixture_path, 'r') as f:
+                    fixture = json.load(f)
+                validate_adapter(fixture, fixture_path)
+                print(f"FAILURE: {fixture_path} should be invalid but passed")
+                error_count += 1
+            except Exception as e:
+                print(f"  {fixture_path} failed as expected: {e}")
+
+    if error_count > 0:
+        print(f"\nValidation failed with {error_count} errors.")
+        sys.exit(1)
+
+    print("\nSUCCESS: All adapter fixtures validated correctly (including negative tests).")
 
 if __name__ == "__main__":
     validate_adapter_fixtures()

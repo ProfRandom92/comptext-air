@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 5
-CURRENT_TASK: AIR-to-Evidence replay contracts
-STATUS: phase-5-replay-contracts
+CURRENT_PHASE: 7
+CURRENT_TASK: Negative adapter fixtures
+STATUS: phase-7-negative-adapters
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
@@ -29,7 +29,7 @@ The repository owns the AIR contract layer:
 
 ## Current validated state
 
-Phase 5 validates:
+Phase 7 validates:
 
 - JSON syntax across repository fixtures and schemas
 - AIR plan fixtures
@@ -38,7 +38,8 @@ Phase 5 validates:
 - AIR artifact hash references
 - parent_event_hash continuity
 - CompText json-c14n-v1 canonicalization profile
-- AIR-to-Evidence replay contract fulfillment (pipeline, contracts, outputs)
+- AIR-to-Evidence replay contract fulfillment
+- Negative adapter validation (blocking forbidden claims and missing safety fields)
 
 ## Current boundary
 
@@ -53,6 +54,6 @@ This repository does not own:
 
 ## Next phase
 
-Phase 5: AIR-to-Evidence replay contracts.
+Phase 7: Negative adapter fixtures.
 
-Goal: prove that evidence events fulfill the AIR plan, including required pipeline steps, required outputs, shared AIR artifact hash, and root evidence hash reporting.
+Goal: prove that invalid or over-claiming AIR runtime adapters fail validation.
