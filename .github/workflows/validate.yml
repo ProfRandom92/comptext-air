@@ -25,3 +25,8 @@ jobs:
         run: python scripts/validate_replay_contracts.py
       - name: Validate Adapter Fixtures
         run: python scripts/validate_adapter_fixtures.py
+      - name: Verify Audit Reports
+        run: |
+          ls -l reports/generated/
+          cat reports/generated/replay-contract-report.json
+          cat reports/generated/adapter-validation-report.json

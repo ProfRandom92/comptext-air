@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 7
-CURRENT_TASK: Negative adapter fixtures
-STATUS: phase-7-negative-adapters
+CURRENT_PHASE: 8
+CURRENT_TASK: Generated Audit Reports
+STATUS: phase-8-generated-reports
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
@@ -26,10 +26,11 @@ The repository owns the AIR contract layer:
 - local/dev Supabase drafts
 - agent handoff prompts
 - CI validation workflow
+- Machine-readable audit reports
 
 ## Current validated state
 
-Phase 7 validates:
+Phase 8 validates:
 
 - JSON syntax across repository fixtures and schemas
 - AIR plan fixtures
@@ -40,6 +41,7 @@ Phase 7 validates:
 - CompText json-c14n-v1 canonicalization profile
 - AIR-to-Evidence replay contract fulfillment
 - Negative adapter validation (blocking forbidden claims and missing safety fields)
+- Deterministic JSON audit report generation
 
 ## Current boundary
 
@@ -54,6 +56,6 @@ This repository does not own:
 
 ## Next phase
 
-Phase 7: Negative adapter fixtures.
+Phase 8: Generated Audit Reports.
 
-Goal: prove that invalid or over-claiming AIR runtime adapters fail validation.
+Goal: generate deterministic machine-readable validation reports for replay contracts and adapter validation.

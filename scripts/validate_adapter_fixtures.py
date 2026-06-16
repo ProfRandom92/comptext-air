@@ -1,9 +1,11 @@
 import json
 import sys
 from pathlib import Path
+from collections import OrderedDict
 
 ADAPTER_FIXTURES_DIR = Path("fixtures/adapter")
 INVALID_FIXTURES_DIR = ADAPTER_FIXTURES_DIR / "invalid"
+REPORT_OUTPUT = Path("reports/generated/adapter-validation-report.json")
 
 VALID_KIND = {"local-cli", "mcp-proxy", "internal-vfs", "unknown"}
 VALID_AIR_VERSION = "air-v0.1"
@@ -77,12 +79,20 @@ def validate_adapter(fixture, fixture_path):
 def validate_adapter_fixtures():
     print("Validating AIR Adapter fixtures...")
     
+    report = OrderedDict([
+        ("status", "failure"),
+        ("checked_files", []),
+        ("invalid_fixtures_failures", []),
+        ("forbidden_claims_blocked", sorted(list(FORBIDDEN_CLAIMS)))
+    ])
+
     error_count = 0
 
     # 1. Validate positive fixtures
     positive_fixtures = list(ADAPTER_FIXTURES_DIR.glob("*.json"))
     for fixture_path in positive_fixtures:
         print(f"  Validating {fixture_path}...")
+        report["checked_files"].append(str(fixture_path))
         try:
             with open(fixture_path, 'r') as f:
                 fixture = json.load(f)
@@ -96,6 +106,7 @@ def validate_adapter_fixtures():
         negative_fixtures = list(INVALID_FIXTURES_DIR.glob("*.json"))
         for fixture_path in negative_fixtures:
             print(f"  Validating {fixture_path} (expecting failure)...")
+            report["checked_files"].append(str(fixture_path))
             try:
                 with open(fixture_path, 'r') as f:
                     fixture = json.load(f)
@@ -104,6 +115,19 @@ def validate_adapter_fixtures():
                 error_count += 1
             except Exception as e:
                 print(f"  {fixture_path} failed as expected: {e}")
+                report["invalid_fixtures_failures"].append({
+                    "file": str(fixture_path),
+                    "error": str(e)
+                })
+
+    if error_count == 0:
+        report["status"] = "success"
+
+    # Write report
+    REPORT_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    with open(REPORT_OUTPUT, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2)
+    print(f"  Report generated: {REPORT_OUTPUT}")
 
     if error_count > 0:
         print(f"\nValidation failed with {error_count} errors.")
