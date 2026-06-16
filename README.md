@@ -155,3 +155,13 @@ See:
 - [Contributing](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 
+### Pre-release preparation
+
+The repository is currently preparing for its first public pre-release candidate (`v0.1.0-pre`).
+
+See:
+- [Tagging Checklist](docs/TAGGING_CHECKLIST.md)
+- [v0.1.0-pre Release Notes](docs/RELEASE_NOTES_v0.1.0-pre.md)
+- [Validation Baseline](docs/VALIDATION_BASELINE.md)
+- [Release Readiness](docs/RELEASE_READINESS.md)
+

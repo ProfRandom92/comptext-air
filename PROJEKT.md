@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 10
-CURRENT_TASK: Release Readiness and Public Repo Polish
-STATUS: phase-10-complete
+CURRENT_PHASE: 11
+CURRENT_TASK: v0.1.0-pre tag preparation
+STATUS: phase-11-tag-preparation
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
@@ -28,10 +28,11 @@ The repository owns the AIR contract layer:
 - CI validation workflow
 - Machine-readable audit reports
 - Release readiness documentation
+- Tagging and release preparation
 
 ## Current validated state
 
-Phase 10 validates:
+Phase 11 validates:
 
 - JSON syntax across repository fixtures and schemas
 - AIR plan fixtures
@@ -45,6 +46,7 @@ Phase 10 validates:
 - Deterministic JSON audit report generation
 - Repository-local agent skill pack
 - Release readiness baseline
+- Tagging checklist and release notes (Prepares release documentation without creating a tag)
 
 ## Current boundary
 
@@ -59,4 +61,4 @@ This repository does not own:
 
 ## Next phase
 
-Phase 11: Conceptual AIR Context Snapshotting.
+Phase 12: Conceptual AIR Context Snapshotting.

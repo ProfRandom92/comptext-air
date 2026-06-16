@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v0.1.0-pre] - Unreleased
+
+### Phase 11: v0.1.0-pre Tag Preparation
+- Created `docs/TAGGING_CHECKLIST.md` for release validation.
+- Created `docs/RELEASE_NOTES_v0.1.0-pre.md` summarizing the public review candidate.
+- Prepared project metadata for the first pre-release.
 
 ### Phase 10: Release Readiness and Public Repo Polish
 - Added `docs/VALIDATION_BASELINE.md` summarizing the validated state.
