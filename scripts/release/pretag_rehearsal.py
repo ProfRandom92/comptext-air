@@ -59,9 +59,9 @@ def main():
 
     project = (ROOT / "PROJEKT.md").read_text(encoding="utf-8")
     required_project = [
-        "CURRENT_PHASE: 11",
-        "CURRENT_TASK: v0.1.0-pre tag preparation",
-        "STATUS: phase-11-tag-preparation",
+        "CURRENT_PHASE: 12",
+        "CURRENT_TASK: Final pre-tag audit",
+        "STATUS: phase-12-final-pre-tag-audit",
     ]
     for item in required_project:
         if item not in project:
