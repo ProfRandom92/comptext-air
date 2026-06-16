@@ -40,78 +40,64 @@ def build_event(event_id, timestamp, event_type, action, air_hash, parent_hash=N
 def main():
     air_hash = hash_json_file(AIR_PATH)
 
-    start = build_event(
+    # 1. load_evidence_events
+    e1 = build_event(
         event_id="evt-001",
         timestamp="2026-06-16T10:00:00Z",
         event_type="start",
-        action="load_air_plan",
+        action="load_evidence_events",
         air_hash=air_hash,
         inputs=[
-            {
-                "key": "air_plan",
-                "hash": air_hash,
-            }
+            {"key": "evidence_input", "hash": hash_json_value({"path": "fixtures/evidence/raw.json"})}
         ],
-        metadata={
-            "phase": "phase-4",
-            "claim": "AIR plan loaded from local fixture and hashed with json-c14n-v1."
-        },
+        metadata={"phase": "loading"}
     )
 
-    validate_parent_input = hash_json_value({
-        "previous_event_id": start["event_id"],
-        "previous_event_hash": start["event_hash"],
-        "contract": "parent_event_hash_equals_previous_event_hash"
-    })
-
-    verify = build_event(
+    # 2. verify_parent_links (Contract: no_missing_parent_event)
+    e2 = build_event(
         event_id="evt-002",
         timestamp="2026-06-16T10:00:05Z",
         event_type="verification",
-        action="verify_parent_link",
+        action="verify_parent_links",
         air_hash=air_hash,
-        parent_hash=start["event_hash"],
-        inputs=[
-            {
-                "key": "parent_link_contract",
-                "hash": validate_parent_input,
-            }
-        ],
-        metadata={
-            "contract": "parent_event_hash_equals_previous_event_hash"
-        },
+        parent_hash=e1["event_hash"],
+        metadata={"contract": "no_missing_parent_event"}
     )
 
-    report_payload = {
-        "air_path": str(AIR_PATH),
-        "events": ["evt-001", "evt-002"],
-        "root_hash": verify["event_hash"],
-        "status": "valid"
-    }
-
-    report_hash = hash_json_value(report_payload)
-
-    end = build_event(
+    # 3. verify_hash_chain (Contracts: hash_chain_contiguous, event_hash_present)
+    e3 = build_event(
         event_id="evt-003",
         timestamp="2026-06-16T10:00:10Z",
-        event_type="end",
-        action="emit_validation_result",
+        event_type="verification",
+        action="verify_hash_chain",
         air_hash=air_hash,
-        parent_hash=verify["event_hash"],
+        parent_hash=e2["event_hash"],
+        metadata={"contract": "hash_chain_contiguous"},
         outputs=[
-            {
-                "key": "validation_result",
-                "hash": report_hash,
-            }
-        ],
+            {"key": "event_hash_present", "hash": hash_json_value({"status": "verified"})}
+        ]
+    )
+
+    # 4. emit_validation_report (Contract: final_report_references_evidence, Outputs: reports/hash-chain.validation.json, reports/hash-chain.validation.md)
+    e4 = build_event(
+        event_id="evt-004",
+        timestamp="2026-06-16T10:00:15Z",
+        event_type="end",
+        action="emit_validation_report",
+        air_hash=air_hash,
+        parent_hash=e3["event_hash"],
         metadata={
-            "result": "valid",
-            "root_event_hash": verify["event_hash"]["value"]
+            "contract": "final_report_references_evidence",
+            "report": "reports/hash-chain.validation.json"
         },
+        outputs=[
+            {"key": "reports/hash-chain.validation.json", "hash": hash_json_value({"result": "pass"})},
+            {"key": "reports/hash-chain.validation.md", "hash": hash_json_value("# Validation Report\nPass.")}
+        ]
     )
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps([start, verify, end], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    OUT_PATH.write_text(json.dumps([e1, e2, e3, e4], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"wrote {OUT_PATH}")
 
 

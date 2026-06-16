@@ -1,8 +1,8 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 4
-CURRENT_TASK: Canonical evidence hashing
-STATUS: validated
+CURRENT_PHASE: 5
+CURRENT_TASK: AIR-to-Evidence replay contracts
+STATUS: phase-5-replay-contracts
 NETWORK: offline-only
 DEFAULT_BRANCH: main
 
@@ -29,7 +29,7 @@ The repository owns the AIR contract layer:
 
 ## Current validated state
 
-Phase 4 validates:
+Phase 5 validates:
 
 - JSON syntax across repository fixtures and schemas
 - AIR plan fixtures
@@ -38,6 +38,7 @@ Phase 4 validates:
 - AIR artifact hash references
 - parent_event_hash continuity
 - CompText json-c14n-v1 canonicalization profile
+- AIR-to-Evidence replay contract fulfillment (pipeline, contracts, outputs)
 
 ## Current boundary
 

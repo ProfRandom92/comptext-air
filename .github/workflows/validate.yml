@@ -7,9 +7,19 @@ on:
     branches: ["main"]
 
 jobs:
-  validate-json:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate JSON files
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Validate JSON syntax
         run: python scripts/validate_json.py
+      - name: Validate AIR Fixtures
+        run: python scripts/validate_air_fixtures.py
+      - name: Validate Evidence Fixtures
+        run: python scripts/validate_evidence_fixtures.py
+      - name: Validate Replay Contracts
+        run: python scripts/validate_replay_contracts.py
