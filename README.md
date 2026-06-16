@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/brand/comptext-air-readme-header.svg" alt="CompText AIR - Agent Intermediate Representation" width="100%">
+</p>
+
 # CompText AIR
 
 Agent Intermediate Representation for CompText.
@@ -99,3 +103,7 @@ This repository does not claim:
 Phase 5: AIR-to-Evidence replay contracts.
 
 The next validation layer should prove that an evidence event chain fulfills the AIR plan, not only that the hashes are valid.
+
+<p align="center">
+  <img src="assets/brand/comptext-air-readme-footer.svg" alt="CompText AIR - Deterministic, portable, verifiable" width="100%">
+</p>
