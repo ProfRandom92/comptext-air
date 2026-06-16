@@ -107,3 +107,18 @@ The next validation layer should prove that an evidence event chain fulfills the
 <p align="center">
   <img src="assets/brand/comptext-air-readme-footer.png" alt="CompText AIR - Deterministic, portable, verifiable" width="100%">
 </p>
+
+
+## Agent Skill Pack
+
+CompText AIR includes a repository-local agent skill pack for Gemini, Codex, and other coding agents.
+
+The skill pack is not an official plugin, provider runtime, or MCP server. It is a local instruction layer that documents read order, validation commands, safety boundaries, and forbidden claims.
+
+See:
+
+- `.agent/skills/comptext-air/SKILL.md`
+- `agent_prompts/GEMINI_AIR_VALIDATION_PROMPT.md`
+- `agent_prompts/CODEX_AIR_VALIDATION_PROMPT.md`
+- `docs/AGENT_SKILLS.md`
+
