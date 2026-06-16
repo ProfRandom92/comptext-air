@@ -1,7 +1,7 @@
 # PROJEKT.md - CompText AIR Project State
 
-CURRENT_PHASE: 3
-CURRENT_TASK: Evidence Separation and validation stabilization
+CURRENT_PHASE: 4
+CURRENT_TASK: Canonical Hashing and SHA-256 default
 STATUS: validated
 NETWORK: offline-only
 DEFAULT_BRANCH: main

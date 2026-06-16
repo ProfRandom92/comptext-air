@@ -1,45 +1,122 @@
 [
   {
     "event_id": "evt-001",
-    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "air_ref": {
+      "path": "fixtures/air/hash-chain.audit.air.json",
+      "hash": {
+        "algorithm": "sha256",
+        "canonicalization": "json-c14n-v1",
+        "value": "5a7079da631f3c7c4dbefe99371c3f24655d575edbeb41cb87363563976be288"
+      }
+    },
     "timestamp": "2026-06-16T10:00:00Z",
     "executor": {
-      "id": "gemini-cli",
-      "type": "agent"
+      "id": "comptext-air-local",
+      "type": "system"
     },
     "event_type": "start",
-    "command": "python scripts/validate_evidence_fixtures.py",
-    "event_hash": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+    "action": "load_air_plan",
+    "metadata": {
+      "phase": "phase-4",
+      "claim": "AIR plan loaded from local fixture and hashed with json-c14n-v1."
+    },
+    "inputs": [
+      {
+        "key": "air_plan",
+        "hash": {
+          "algorithm": "sha256",
+          "canonicalization": "json-c14n-v1",
+          "value": "5a7079da631f3c7c4dbefe99371c3f24655d575edbeb41cb87363563976be288"
+        }
+      }
+    ],
+    "event_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "json-c14n-v1",
+      "value": "0f4c3c2a8117102c34ab53fe0440f4c982e1e84ee9be2a28c03c779ba91923f5"
+    }
   },
   {
     "event_id": "evt-002",
-    "parent_event_hash": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
-    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "air_ref": {
+      "path": "fixtures/air/hash-chain.audit.air.json",
+      "hash": {
+        "algorithm": "sha256",
+        "canonicalization": "json-c14n-v1",
+        "value": "5a7079da631f3c7c4dbefe99371c3f24655d575edbeb41cb87363563976be288"
+      }
+    },
     "timestamp": "2026-06-16T10:00:05Z",
     "executor": {
-      "id": "gemini-cli",
-      "type": "agent"
+      "id": "comptext-air-local",
+      "type": "system"
     },
-    "event_type": "step",
-    "command": "load_evidence_events",
-    "outputs": [
+    "event_type": "verification",
+    "action": "verify_parent_link",
+    "metadata": {
+      "contract": "parent_event_hash_equals_previous_event_hash"
+    },
+    "parent_event_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "json-c14n-v1",
+      "value": "0f4c3c2a8117102c34ab53fe0440f4c982e1e84ee9be2a28c03c779ba91923f5"
+    },
+    "inputs": [
       {
-        "key": "evidence_list",
-        "hash": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2"
+        "key": "parent_link_contract",
+        "hash": {
+          "algorithm": "sha256",
+          "canonicalization": "json-c14n-v1",
+          "value": "1dd153cb90a2f796b4e099a25a7c8c17470f3fed6bf4580427dba892207ed09b"
+        }
       }
     ],
-    "event_hash": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+    "event_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "json-c14n-v1",
+      "value": "b43a5f3306490bbc8c745d5caee59a518047e930ce8c51768dab8b6f7de4f778"
+    }
   },
   {
     "event_id": "evt-003",
-    "parent_event_hash": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
-    "air_hash": "c293ceb42df1c7a0959ff1fafee60f4d1b94cb7af156b24ee2d72b59f5c593bf",
+    "air_ref": {
+      "path": "fixtures/air/hash-chain.audit.air.json",
+      "hash": {
+        "algorithm": "sha256",
+        "canonicalization": "json-c14n-v1",
+        "value": "5a7079da631f3c7c4dbefe99371c3f24655d575edbeb41cb87363563976be288"
+      }
+    },
     "timestamp": "2026-06-16T10:00:10Z",
     "executor": {
-      "id": "gemini-cli",
-      "type": "agent"
+      "id": "comptext-air-local",
+      "type": "system"
     },
     "event_type": "end",
-    "event_hash": "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4"
+    "action": "emit_validation_result",
+    "metadata": {
+      "result": "valid",
+      "root_event_hash": "b43a5f3306490bbc8c745d5caee59a518047e930ce8c51768dab8b6f7de4f778"
+    },
+    "parent_event_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "json-c14n-v1",
+      "value": "b43a5f3306490bbc8c745d5caee59a518047e930ce8c51768dab8b6f7de4f778"
+    },
+    "outputs": [
+      {
+        "key": "validation_result",
+        "hash": {
+          "algorithm": "sha256",
+          "canonicalization": "json-c14n-v1",
+          "value": "7bb60521e6a77b881ac2d2182e2e8b3e8d32ec07440126b8ad7f6d2544b1a133"
+        }
+      }
+    ],
+    "event_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "json-c14n-v1",
+      "value": "410adc123b22a45a30c54a829856992573c27c6f71c78f3c6ab3f98c9dc2c883"
+    }
   }
 ]

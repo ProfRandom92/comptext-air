@@ -7,3 +7,6 @@ node_modules/
 *.sqlite
 .DS_Store
 .gemini/logs/
+
+__pycache__/
+*.pyc

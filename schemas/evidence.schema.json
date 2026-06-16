@@ -1,11 +1,32 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "CompText AIR Evidence Event",
-  "description": "JSON schema for verifiable evidence events associated with AIR artifacts. Supports hash chains for replay safety.",
+  "description": "Schema for verifiable evidence events associated with AIR plan artifacts.",
+  "definitions": {
+    "typed_hash": {
+      "type": "object",
+      "required": ["algorithm", "canonicalization", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["sha256"]
+        },
+        "canonicalization": {
+          "type": "string",
+          "enum": ["json-c14n-v1"]
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  },
   "type": "object",
   "required": [
     "event_id",
-    "air_hash",
+    "air_ref",
     "timestamp",
     "executor",
     "event_type",
@@ -14,40 +35,48 @@
   "additionalProperties": false,
   "properties": {
     "event_id": {
-      "type": "string",
-      "description": "Unique identifier for this evidence event."
+      "type": "string"
     },
     "parent_event_hash": {
-      "type": "string",
-      "description": "SHA-256 hash of the previous evidence event in the chain.",
-      "pattern": "^[a-f0-9]{64}$"
+      "$ref": "#/definitions/typed_hash"
     },
-    "air_hash": {
-      "type": "string",
-      "description": "SHA-256 hash of the associated AIR artifact (intent/plan).",
-      "pattern": "^[a-f0-9]{64}$"
+    "air_ref": {
+      "type": "object",
+      "required": ["path", "hash"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "hash": {
+          "$ref": "#/definitions/typed_hash"
+        }
+      }
     },
     "timestamp": {
       "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp of when the evidence was recorded."
+      "format": "date-time"
     },
     "executor": {
       "type": "object",
       "required": ["id", "type"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string" },
-        "type": { "type": "string", "enum": ["agent", "human", "system"] }
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["agent", "human", "system"]
+        }
       }
     },
     "event_type": {
       "type": "string",
       "enum": ["start", "step", "artifact", "end", "error", "verification"]
     },
-    "command": {
-      "type": "string",
-      "description": "The command or action that was executed."
+    "action": {
+      "type": "string"
     },
     "inputs": {
       "type": "array",
@@ -56,8 +85,12 @@
         "required": ["key", "hash"],
         "additionalProperties": false,
         "properties": {
-          "key": { "type": "string" },
-          "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          "key": {
+            "type": "string"
+          },
+          "hash": {
+            "$ref": "#/definitions/typed_hash"
+          }
         }
       }
     },
@@ -68,23 +101,20 @@
         "required": ["key", "hash"],
         "additionalProperties": false,
         "properties": {
-          "key": { "type": "string" },
-          "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          "key": {
+            "type": "string"
+          },
+          "hash": {
+            "$ref": "#/definitions/typed_hash"
+          }
         }
       }
     },
-    "log_hash": {
-      "type": "string",
-      "description": "SHA-256 hash of the execution log.",
-      "pattern": "^[a-f0-9]{64}$"
-    },
-    "event_hash": {
-      "type": "string",
-      "description": "SHA-256 hash of this event object (typically calculated over all other fields).",
-      "pattern": "^[a-f0-9]{64}$"
-    },
     "metadata": {
       "type": "object"
+    },
+    "event_hash": {
+      "$ref": "#/definitions/typed_hash"
     }
   }
 }

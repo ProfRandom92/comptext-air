@@ -26,8 +26,9 @@ AIR artifacts are **static** descriptions of intent.
 Evidence is the verifiable record of runtime behavior. It provides the "proof" of what happened.
 
 - **Events:** Discrete points in time during execution (start, step, end).
-- **Hashes:** Cryptographic digests of inputs, outputs, logs, and the AIR plan itself.
-- **Hash Chain:** Each evidence event (except the first) references the hash of the previous event, creating an immutable audit trail.
+- **Typed Hashes:** All hashes are objects containing `algorithm` (default: `sha256`), `canonicalization` (default: `rfc8785`), and the hex `value`.
+- **Hash Chain:** Each evidence event (except the first) references the `event_hash` of the previous event via `parent_event_hash`, creating an immutable audit trail.
+- **Canonicalization:** Events are hashed using RFC 8785 (JSON Canonicalization Scheme) to ensure deterministic results across different platforms.
 - **Executor:** Identification of who performed the action (agent, human, or system).
 - **Verification:** Links back to the AIR plan via `air_hash`.
 
