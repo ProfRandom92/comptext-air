@@ -1,0 +1,13 @@
+{
+  "version": "v0.1",
+  "timestamp": "2026-06-16T10:00:00Z",
+  "agent_id": "minimal-agent-001",
+  "task_id": "minimal-task-001",
+  "input_prompt_hash": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+  "output_proposal_hash": "b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1",
+  "payload": {
+    "action": "initialize_system",
+    "status": "success",
+    "details": "System initialized with minimal configuration."
+  }
+}
